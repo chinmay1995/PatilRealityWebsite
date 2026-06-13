@@ -79,7 +79,6 @@
             overflow: hidden;
         }
 
-        /* Background Ken Burns Slideshow Wrapper */
         .hero-slideshow {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -95,7 +94,6 @@
             animation: slideAnimation 24s infinite;
         }
 
-        /* High-end real estate background slides changing every 8 seconds */
         .slide:nth-child(1) {
             background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
             animation-delay: 0s;
@@ -109,7 +107,6 @@
             animation-delay: 16s;
         }
 
-        /* Luxury Tint Overlay */
         .hero-overlay { 
             position: absolute; 
             top: 0; left: 0; width: 100%; height: 100%; 
@@ -117,7 +114,6 @@
             z-index: -2; 
         }
 
-        /* Subtle Architectural Grid Lines Overlay */
         .hero-grid-lines {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -131,7 +127,6 @@
         .hero-content { max-width: 900px; position: relative; z-index: 1; }
         .hero-actions { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; }
 
-        /* Smooth Cinematic Zoom & Pan (Ken Burns Effect) Animation */
         @keyframes slideAnimation {
             0% { opacity: 0; transform: scale(1) translate(0, 0); }
             4% { opacity: 1; }
@@ -300,7 +295,8 @@
                     </div>
                 </div>
                 <div class="about-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Construction Legacy" class="about-image">
+                    <!-- Option 2 Placeholder Image (Bypasses ad-blockers) -->
+                    <img src="https://picsum.photos/1000/800" alt="Luxury Juhu Bungalow - The Patil Realty Legacy" class="about-image">
                 </div>
             </div>
         </section>
@@ -396,7 +392,8 @@
 
                         <div class="form-group">
                             <label for="mobile">Mobile Number *</label>
-                            <input type="tel" id="mobile" name="mobile" class="form-control" required placeholder="+91" pattern="[0-9]{10,12}">
+                            <!-- Updated pattern to allow for an optional '+' prefix -->
+                            <input type="tel" id="mobile" name="mobile" class="form-control" required placeholder="+91" pattern="^\+?[0-9]{10,12}$">
                         </div>
 
                         <div class="form-group">
