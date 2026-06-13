@@ -418,9 +418,10 @@
                 </div>
 
                 <div class="contact-form">
-                    <form action="https://api.web3forms.com/submit" method="POST">
-                        <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                        <input type="hidden" name="subject" value="New Website Enquiry - The Patil Realty">
+                    <!-- FormSubmit Action URL -->
+                    <form action="https://formsubmit.co/chinmay9000@gmail.com" method="POST">
+                        <input type="hidden" name="_subject" value="New Website Enquiry - The Patil Realty">
+                        <input type="hidden" name="_captcha" value="false">
 
                         <div class="form-group">
                             <label for="name">Full Name *</label>
@@ -429,7 +430,6 @@
 
                         <div class="form-group">
                             <label for="mobile">Mobile Number *</label>
-                            <!-- Updated pattern to allow for an optional '+' prefix -->
                             <input type="tel" id="mobile" name="mobile" class="form-control" required placeholder="+91" pattern="^\+?[0-9]{10,12}$">
                         </div>
 
@@ -438,9 +438,10 @@
                             <input type="email" id="email" name="email" class="form-control" required placeholder="yourname@email.com">
                         </div>
 
+                        <!-- Address field made optional -->
                         <div class="form-group">
-                            <label for="address">Address *</label>
-                            <textarea id="address" name="address" class="form-control" required placeholder="Enter your current city and address details"></textarea>
+                            <label for="address">Address (Optional)</label>
+                            <textarea id="address" name="address" class="form-control" placeholder="Enter your current city and address details"></textarea>
                         </div>
 
                         <button type="submit" class="btn-submit">Send Message</button>
