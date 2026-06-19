@@ -1,526 +1,899 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Patil Realty | Building Dreams. Delivering Legacies.</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Patil Realty | Building Dreams. Delivering Legacies.</title>
+<meta name="description" content="The Patil Realty - Trusted real estate developer in Mumbai & Maharashtra. RERA certified residential & commercial projects.">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0D1B2A;--navy2:#162336;--gold:#C9973A;--gold-light:#E8B95A;--cream:#F8F5EE;--cream2:#F0ECE3;
+  --grey:#8A8A8A;--green:#2D7A4F;--white:#fff;
+  --ff-display:'Playfair Display',serif;--ff-body:'Inter',sans-serif;--ff-data:'Cormorant Garamond',serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--cream);color:var(--navy);overflow-x:hidden}
 
-    <style>
-        /* --- CSS VARIABLES --- */
-        :root {
-            --primary: #0D1B2A;
-            --accent-gold: #C9973A;
-            --bg-cream: #F8F5EE;
-            --text-grey: #8A8A8A;
-            --success-green: #2D7A4F;
-            --white: #ffffff;
-            --font-display: 'Playfair Display', serif;
-            --font-body: 'Inter', sans-serif;
-            --font-accent: 'Cormorant Garamond', serif;
-            --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 5%;transition:all 0.35s ease}
+nav.nav-dark{background:transparent}
+nav.nav-dark.scrolled{background:rgba(13,27,42,0.97);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(0,0,0,0.3)}
+nav.nav-light{background:rgba(13,27,42,0.97);box-shadow:0 2px 16px rgba(0,0,0,0.15)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;flex-shrink:0}
+.logo img{height:44px;width:auto;display:block}
+.logo-text{display:flex;flex-direction:column;line-height:1}
+.logo-top{font-family:var(--ff-display);font-size:18px;font-weight:700;color:var(--white);letter-spacing:0.02em}
+.logo-sub{font-size:10px;font-weight:300;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.82);text-decoration:none;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;cursor:pointer}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-cta{background:var(--gold);color:var(--navy);border:none;padding:10px 20px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;font-family:var(--ff-body);white-space:nowrap}
+.nav-cta:hover{background:var(--gold-light)}
 
-        /* --- RESET & SMOOTH SCROLL --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        html { 
-            scroll-behavior: smooth; 
-            scroll-padding-top: 90px;
-        }
-        
-        body { font-family: var(--font-body); background-color: var(--bg-cream); color: var(--primary); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; }
-        a { text-decoration: none; color: inherit; }
-        img, video { max-width: 100%; display: block; }
-        .text-center { text-align: center; }
+/* ── HAMBURGER (mobile) ── */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none;z-index:1100}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);transition:all 0.3s;border-radius:2px}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-        /* --- TYPOGRAPHY & BUTTONS --- */
-        .h1-hero { font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; letter-spacing: -0.02em; }
-        .h2-section { font-size: clamp(2rem, 3vw, 2.625rem); margin-bottom: 1rem; }
-        .body-large { font-size: 1.125rem; color: var(--text-grey); margin-bottom: 2rem;}
-        .data-accent { font-family: var(--font-accent); font-size: 3rem; color: var(--accent-gold); line-height: 1; }
-        
-        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; font-size: 0.875rem; transition: var(--transition-smooth); cursor: pointer; border: none; }
-        .btn-primary { background-color: var(--accent-gold); color: var(--white); }
-        .btn-primary:hover { background-color: #b0822e; transform: scale(1.02); }
-        .btn-outline { border: 1px solid var(--white); color: var(--white); background: transparent; }
-        .btn-outline:hover { background-color: var(--white); color: var(--primary); }
+/* ── MOBILE MENU ── */
+.mobile-menu{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(13,27,42,0.99);z-index:999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;transform:translateX(100%);transition:transform 0.35s ease;backdrop-filter:blur(16px)}
+.mobile-menu.open{transform:translateX(0)}
+.mobile-menu a{color:rgba(255,255,255,0.85);text-decoration:none;font-family:var(--ff-display);font-size:26px;font-weight:600;cursor:pointer;transition:color 0.2s}
+.mobile-menu a:hover,.mobile-menu a.mob-active{color:var(--gold)}
+.mobile-menu .mob-divider{width:40px;height:1px;background:rgba(201,151,58,0.3)}
+.mob-cta{background:var(--gold);color:var(--navy)!important;padding:14px 40px;font-family:var(--ff-body)!important;font-size:14px!important;font-weight:700;letter-spacing:0.1em;text-transform:uppercase}
 
-        /* --- NAVIGATION --- */
-        .header { position: fixed; top: 0; width: 100%; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; z-index: 1000; transition: var(--transition-smooth); }
-        .header.scrolled { background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0,0,0,0.05); padding: 10px 5%; }
-        
-        .logo { display: flex; align-items: center; text-decoration: none; }
-        .logo img { max-height: 65px; width: auto; object-fit: contain; transition: var(--transition-smooth); }
-        
-        /* Mobile Menu Toggle Icon */
-        .menu-toggle { display: none; cursor: pointer; color: var(--white); transition: var(--transition-smooth); }
-        .header.scrolled .menu-toggle { color: var(--primary); }
+/* ── PAGES ── */
+.page{display:none;min-height:100vh}
+.page.active{display:block}
 
-        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-        .nav-links a { color: var(--white); font-size: 0.9rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.12em; transition: var(--transition-smooth); }
-        .header.scrolled .nav-links a { color: var(--primary); }
-        .nav-links a:hover { color: var(--accent-gold) !important; }
+/* ── HERO ── */
+.hero{position:relative;height:100vh;min-height:600px;background:var(--navy);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0D1B2A 0%,#1a2e45 40%,#0f2233 100%)}
+.hero-pattern{position:absolute;inset:0;opacity:0.04;background-image:repeating-linear-gradient(45deg,#C9973A 0,#C9973A 1px,transparent 0,transparent 50%);background-size:20px 20px}
+.hero-img{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=1800&q=80') center/cover no-repeat;opacity:0.25}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:900px}
+.hero-eyebrow{font-size:11px;font-weight:500;color:var(--gold);letter-spacing:0.3em;text-transform:uppercase;margin-bottom:24px;opacity:0;animation:fadeUp 0.8s 0.3s forwards}
+.hero-title{font-family:var(--ff-display);font-size:clamp(38px,6vw,78px);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:20px;opacity:0;animation:fadeUp 0.8s 0.5s forwards}
+.hero-title em{color:var(--gold);font-style:italic}
+.hero-sub{font-size:clamp(15px,2vw,18px);font-weight:300;color:rgba(255,255,255,0.7);margin-bottom:44px;opacity:0;animation:fadeUp 0.8s 0.7s forwards}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.8s 0.9s forwards}
+.btn-gold{background:var(--gold);color:var(--navy);border:none;padding:15px 32px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;font-family:var(--ff-body)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-2px)}
+.btn-outline-w{background:transparent;color:var(--white);border:1.5px solid rgba(255,255,255,0.5);padding:15px 32px;font-size:13px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;font-family:var(--ff-body)}
+.btn-outline-w:hover{border-color:var(--gold);color:var(--gold)}
+.scroll-hint{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fadeUp 0.8s 1.2s forwards}
+.scroll-hint span{font-size:10px;color:rgba(255,255,255,0.4);letter-spacing:0.15em;text-transform:uppercase}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s infinite}
 
-        /* --- PURE CODE CINEMATIC HERO --- */
-        .hero { 
-            height: 100vh; 
-            position: relative; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            text-align: center; 
-            color: var(--white); 
-            padding: 0 5%; 
-            overflow: hidden;
-        }
+/* ── STATS ── */
+.stats-bar{background:var(--navy2);padding:48px 5%}
+.stats-grid{display:grid;grid-template-columns:repeat(5,1fr);max-width:1200px;margin:0 auto}
+.stat-item{text-align:center;padding:20px;border-right:1px solid rgba(201,151,58,0.12)}
+.stat-item:last-child{border-right:none}
+.stat-num{font-family:var(--ff-data);font-size:clamp(32px,4vw,52px);font-weight:600;color:var(--gold);line-height:1}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:0.1em;text-transform:uppercase;margin-top:8px}
 
-        .hero-slideshow {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -3;
-        }
+/* ── SECTION BASICS ── */
+.section{padding:100px 5%}
+.section-label{font-size:11px;font-weight:500;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:16px}
+.section-title{font-family:var(--ff-display);font-size:clamp(28px,4vw,48px);font-weight:600;color:var(--navy);line-height:1.15;margin-bottom:20px}
+.section-title-white{color:var(--white)}
 
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0;
-            animation: slideAnimation 24s infinite;
-        }
+/* ── PROJECT CARDS (home) ── */
+.projects-header{max-width:1200px;margin:0 auto 60px;display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto}
+.proj-card{position:relative;overflow:hidden;background:var(--navy);cursor:pointer}
+.proj-card:first-child{grid-column:span 2}
+.proj-img{height:420px;background-size:cover;background-position:center;transition:transform 0.6s ease}
+.proj-card:first-child .proj-img{height:520px}
+.proj-card:hover .proj-img{transform:scale(1.05)}
+.proj-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,0.95) 0%,rgba(13,27,42,0.2) 60%,transparent 100%)}
+.proj-info{position:absolute;bottom:0;left:0;right:0;padding:28px}
+.proj-badge{display:inline-block;padding:4px 12px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;border-radius:2px}
+.badge-ongoing{background:rgba(59,130,246,0.25);color:#93C5FD;border:1px solid rgba(59,130,246,0.3)}
+.badge-upcoming{background:rgba(201,151,58,0.25);color:var(--gold);border:1px solid rgba(201,151,58,0.3)}
+.badge-move{background:rgba(45,122,79,0.25);color:#6EE7A8;border:1px solid rgba(45,122,79,0.3)}
+.proj-name{font-family:var(--ff-display);font-size:24px;font-weight:600;color:var(--white);margin-bottom:6px}
+.proj-loc{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:14px}
+.proj-details{display:flex;gap:12px;flex-wrap:wrap}
+.proj-tag{font-size:11px;color:rgba(255,255,255,0.4);padding:4px 10px;border:1px solid rgba(255,255,255,0.12)}
+.proj-hover-cta{position:absolute;bottom:28px;right:28px;background:var(--gold);color:var(--navy);padding:10px 20px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;opacity:0;transform:translateY(8px);transition:all 0.3s;border:none;cursor:pointer;font-family:var(--ff-body)}
+.proj-card:hover .proj-hover-cta{opacity:1;transform:translateY(0)}
 
-        .slide:nth-child(1) {
-            background-image: url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            animation-delay: 0s;
-        }
-        .slide:nth-child(2) {
-            background-image: url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            animation-delay: 8s;
-        }
-        .slide:nth-child(3) {
-            background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            animation-delay: 16s;
-        }
+/* ── WHY US ── */
+.why-section{background:var(--cream2)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;max-width:1200px;margin:60px auto 0}
+.why-card{padding:36px 28px;background:var(--white);border-bottom:3px solid transparent;transition:border-color 0.3s,transform 0.3s}
+.why-card:hover{border-color:var(--gold);transform:translateY(-4px)}
+.why-icon{font-size:30px;margin-bottom:18px;display:block}
+.why-title{font-family:var(--ff-display);font-size:19px;font-weight:600;color:var(--navy);margin-bottom:8px}
+.why-desc{font-size:14px;color:var(--grey);line-height:1.7}
 
-        .hero-overlay { 
-            position: absolute; 
-            top: 0; left: 0; width: 100%; height: 100%; 
-            background: linear-gradient(135deg, rgba(13, 27, 42, 0.85) 0%, rgba(20, 35, 55, 0.6) 100%); 
-            z-index: -2; 
-        }
+/* ── TESTIMONIALS ── */
+.testi-section{background:var(--navy);padding:100px 5%}
+.testi-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1200px;margin:60px auto 0}
+.testi-card{background:rgba(255,255,255,0.05);border:1px solid rgba(201,151,58,0.15);padding:36px;transition:border-color 0.3s}
+.testi-card:hover{border-color:rgba(201,151,58,0.5)}
+.stars{color:var(--gold);font-size:14px;letter-spacing:2px;margin-bottom:18px}
+.testi-quote{font-family:var(--ff-display);font-size:16px;font-style:italic;color:rgba(255,255,255,0.85);line-height:1.7;margin-bottom:24px}
+.testi-author{display:flex;align-items:center;gap:14px}
+.testi-avatar{width:44px;height:44px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--navy);flex-shrink:0}
+.testi-name{font-weight:600;color:var(--white);font-size:14px}
+.testi-proj{font-size:12px;color:var(--grey);margin-top:3px}
 
-        .hero-grid-lines {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 100px 100px;
-            z-index: -1;
-        }
+/* ── AWARDS ── */
+.awards-section{padding:60px 5%;background:var(--cream)}
+.awards-strip{display:flex;gap:48px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:40px;max-width:1200px;margin-left:auto;margin-right:auto}
+.award-item{text-align:center;opacity:0.5;transition:opacity 0.3s}
+.award-item:hover{opacity:1}
+.award-icon{font-size:32px;display:block;margin-bottom:8px}
+.award-name{font-size:11px;font-weight:600;color:var(--navy);letter-spacing:0.1em;text-transform:uppercase}
 
-        .hero-content { max-width: 900px; position: relative; z-index: 1; }
-        .hero-actions { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; }
+/* ── FOOTER ── */
+footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.5fr;gap:48px;max-width:1200px;margin:0 auto;padding-bottom:60px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-logo-row{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.footer-logo-row img{height:40px;width:auto}
+.footer-logo-text{font-family:var(--ff-display);font-size:20px;font-weight:700}
+.footer-tagline{font-size:12px;color:var(--gold);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:16px}
+.footer-desc{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.8}
+.footer-heading{font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:20px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,0.6);text-decoration:none;cursor:pointer;transition:color 0.2s}
+.footer-links a:hover{color:var(--gold)}
+.footer-ci{font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:10px;line-height:1.6}
+.footer-bottom{max-width:1200px;margin:28px auto 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:12px;color:rgba(255,255,255,0.22)}
+.rera-badge{font-size:10px;color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.1);padding:4px 10px;margin-top:14px;display:inline-block}
 
-        @keyframes slideAnimation {
-            0% { opacity: 0; transform: scale(1) translate(0, 0); }
-            4% { opacity: 1; }
-            33% { opacity: 1; }
-            37% { opacity: 0; transform: scale(1.08) translate(1%, -1%); }
-            100% { opacity: 0; }
-        }
+/* ── DARK HERO (about / projects pages) ── */
+.dark-hero{height:60vh;min-height:380px;background:var(--navy);position:relative;display:flex;align-items:center;padding:0 5%}
+.dark-hero-img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.2}
+.dark-hero-content{position:relative;z-index:2;max-width:700px}
 
-        /* --- SHARED LAYOUT PADDING --- */
-        .section-padding { padding: 6rem 5%; }
-        .bg-white { background-color: var(--white); }
+/* ── ABOUT STORY ── */
+.story-section{padding:80px 5%;max-width:1200px;margin:0 auto}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.story-text p{font-size:16px;line-height:1.9;color:var(--grey);margin-bottom:18px}
+.story-text p.lead{font-size:18px;color:var(--navy);font-weight:400}
+.timeline{margin-top:44px;border-left:2px solid rgba(201,151,58,0.3);padding-left:28px}
+.tl-item{position:relative;margin-bottom:28px}
+.tl-item::before{content:'';position:absolute;left:-37px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.tl-year{font-family:var(--ff-data);font-size:22px;font-weight:600;color:var(--gold)}
+.tl-event{font-size:14px;color:var(--grey);margin-top:3px;line-height:1.6}
+.story-img img{width:100%;height:500px;object-fit:cover;display:block;filter:grayscale(25%)}
 
-        /* --- STATS BAR --- */
-        .stats-bar { background-color: var(--primary); padding: 4rem 5%; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; text-align: center; }
-        .stat-item p { color: var(--white); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; }
+.vm-section{background:var(--navy);padding:80px 5%}
+.vm-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1000px;margin:56px auto 0}
+.vm-card{padding:44px 36px;border-top:3px solid var(--gold)}
+.vm-card-label{font-size:10px;font-weight:600;color:var(--gold);letter-spacing:0.25em;text-transform:uppercase;margin-bottom:14px}
+.vm-card-title{font-family:var(--ff-display);font-size:21px;color:var(--white);margin-bottom:14px;line-height:1.35}
+.vm-card-text{font-size:14px;color:rgba(255,255,255,0.5);line-height:1.8}
 
-        /* --- ABOUT US SECTION --- */
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 3rem auto 0; text-align: left; align-items: center; }
-        .about-content h3 { font-size: 2rem; margin-bottom: 1rem; color: var(--primary); }
-        .about-content p { color: var(--text-grey); margin-bottom: 1.5rem; }
-        
-        .vision-mission-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
-        .vm-card { border-top: 3px solid var(--accent-gold); padding-top: 1.5rem; }
-        .vm-card h4 { font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary); }
-        .vm-card p { font-size: 0.95rem; line-height: 1.5; margin-bottom: 0; }
-        
-        .about-contact-info { margin-top: 2.5rem; padding: 1.5rem; background: var(--bg-cream); border-left: 4px solid var(--accent-gold); }
-        .about-contact-info h4 { margin-bottom: 0.75rem; color: var(--primary); font-size: 1.1rem; }
-        .about-contact-info p { margin-bottom: 0.5rem; color: var(--text-grey); display: flex; align-items: flex-start; gap: 10px; font-size: 0.95rem; }
-        .about-contact-info a { transition: var(--transition-smooth); }
-        .about-contact-info a:hover { color: var(--accent-gold); }
-        
-        .about-image { border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); width: 100%; height: 480px; object-fit: cover; }
+/* ── FOUNDER / OWNER ── */
+.founder-section{padding:80px 5%;background:var(--cream)}
+.founder-card{max-width:900px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:56px;align-items:center}
+.founder-logo-circle{width:220px;height:220px;border-radius:50%;background:var(--navy2);display:flex;align-items:center;justify-content:center;border:4px solid var(--gold);flex-shrink:0;overflow:hidden}
+.founder-logo-circle img{width:78%;height:78%;object-fit:contain}
+.founder-info .fl{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:0.2em;text-transform:uppercase;margin-bottom:10px}
+.founder-info h3{font-family:var(--ff-display);font-size:clamp(28px,4vw,40px);font-weight:700;color:var(--navy);margin-bottom:4px}
+.founder-info .designation{font-size:14px;color:var(--grey);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.founder-info p{font-size:15px;color:var(--grey);line-height:1.85}
+.founder-info p+p{margin-top:14px}
+.founder-quote{font-family:var(--ff-display);font-size:18px;font-style:italic;color:var(--navy);border-left:3px solid var(--gold);padding-left:20px;margin-top:24px;line-height:1.6}
+.founder-contact{display:flex;gap:24px;margin-top:24px;flex-wrap:wrap}
+.fc-item{font-size:13px;color:var(--navy);display:flex;align-items:center;gap:6px}
+.fc-item b{color:var(--gold)}
 
-        /* --- PROJECTS SECTION --- */
-        .project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin-top: 3rem; }
-        .project-card { background: var(--white); overflow: hidden; position: relative; transition: var(--transition-smooth); cursor: pointer; }
-        .project-card:hover { box-shadow: 0 10px 30px rgba(201, 151, 58, 0.15); }
-        .project-img { height: 300px; width: 100%; object-fit: cover; transition: var(--transition-smooth); }
-        .project-card:hover .project-img { transform: scale(1.05); }
-        .project-img-wrapper { overflow: hidden; position: relative; }
-        .status-badge { position: absolute; top: 15px; right: 15px; padding: 6px 12px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); z-index: 10; }
-        .bg-ongoing { background-color: #3B82F6; } .bg-ready { background-color: var(--success-green); } .bg-upcoming { background-color: #F59E0B; }
-        .project-info { padding: 2rem; }
-        .project-meta { display: flex; align-items: center; gap: 15px; color: var(--text-grey); font-size: 0.875rem; margin-bottom: 1rem; }
+/* ── TEAM ── */
+.team-section{padding:80px 5%;background:var(--cream2)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1200px;margin:56px auto 0}
+.team-card{background:var(--white);overflow:hidden;transition:transform 0.3s}
+.team-card:hover{transform:translateY(-4px)}
+.team-avatar{height:190px;background:var(--navy2);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:44px;font-weight:700;color:rgba(201,151,58,0.35)}
+.team-info{padding:22px}
+.team-name{font-family:var(--ff-display);font-size:17px;font-weight:600;color:var(--navy);margin-bottom:3px}
+.team-role{font-size:11px;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px}
+.team-bio{font-size:13px;color:var(--grey);line-height:1.6}
 
-        /* --- CONTACT SECTION --- */
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; text-align: left; }
-        .contact-info-blocks { display: flex; flex-direction: column; gap: 2rem; }
-        .info-card { background: var(--bg-cream); padding: 2rem; border-left: 4px solid var(--accent-gold); }
-        .info-card h3 { margin-bottom: 0.5rem; display: flex; align-items: center; gap: 10px; font-family: var(--font-body); font-size: 1.1rem; }
-        .info-card p, .info-card a { color: var(--text-grey); transition: var(--transition-smooth); }
-        .info-card a:hover { color: var(--accent-gold); }
-        
-        .contact-form { padding: 2.5rem; background: var(--bg-cream); border: 1px solid #eee; }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.875rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
-        .form-control { width: 100%; padding: 12px 16px; border: 1px solid #ddd; background: var(--white); font-family: var(--font-body); font-size: 1rem; outline: none; transition: var(--transition-smooth); }
-        .form-control:focus { border-color: var(--accent-gold); box-shadow: 0 0 0 3px rgba(201, 151, 58, 0.1); }
-        textarea.form-control { resize: vertical; min-height: 120px; }
-        .btn-submit { width: 100%; background-color: var(--accent-gold); color: var(--white); padding: 16px; border: none; font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; cursor: pointer; transition: var(--transition-smooth); }
-        .btn-submit:hover { background-color: #b0822e; }
+/* ── PROJECTS PAGE ── */
+.filter-bar{padding:24px 5%;background:var(--white);border-bottom:1px solid rgba(0,0,0,0.07);position:sticky;top:74px;z-index:99;overflow-x:auto}
+.filter-inner{display:flex;gap:8px;max-width:1200px;margin:0 auto;width:max-content;min-width:100%}
+.filter-btn{padding:9px 20px;font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border:1.5px solid rgba(13,27,42,0.15);background:transparent;cursor:pointer;transition:all 0.2s;font-family:var(--ff-body);color:var(--grey);white-space:nowrap}
+.filter-btn:hover,.filter-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy)}
+.all-projects{padding:60px 5%;max-width:1200px;margin:0 auto}
+.all-proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.big-proj-card{background:var(--white);overflow:hidden;transition:box-shadow 0.3s;border:1px solid rgba(0,0,0,0.06)}
+.big-proj-card:hover{box-shadow:0 16px 48px rgba(13,27,42,0.1)}
+.bpc-img{height:230px;background-size:cover;background-position:center;position:relative}
+.bpc-badge{position:absolute;top:16px;left:16px;padding:5px 13px;font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border-radius:2px}
+.bpc-body{padding:24px}
+.bpc-name{font-family:var(--ff-display);font-size:21px;font-weight:600;color:var(--navy);margin-bottom:5px}
+.bpc-loc{font-size:13px;color:var(--grey);margin-bottom:14px}
+.bpc-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px;padding:14px;background:var(--cream)}
+.bpc-meta-item label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);display:block}
+.bpc-meta-item span{font-size:13px;font-weight:600;color:var(--navy);margin-top:3px;display:block}
+.bpc-rera{font-size:10px;color:var(--grey);margin-bottom:14px}
+.bpc-enquire{width:100%;background:var(--navy);color:var(--white);border:none;padding:13px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;font-family:var(--ff-body)}
+.bpc-enquire:hover{background:var(--gold);color:var(--navy)}
+.bpc-gallery{transition:background-image 0.3s ease}
+.bpc-gallery-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
+.bpc-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;border:1.5px solid rgba(255,255,255,0.7);transition:all 0.2s}
+.bpc-dot.active,.bpc-dot:hover{background:var(--gold);border-color:var(--gold)}
 
-        /* --- ANIMATIONS --- */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        .fade-in { opacity: 0; animation: fadeInAnim 1s ease forwards; }
-        .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; } .delay-3 { animation-delay: 0.6s; }
-        @keyframes fadeInAnim { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+/* ── CONTACT PAGE ── */
+.contact-hero{padding:160px 5% 72px;background:var(--cream);text-align:center}
+.contact-hero h1{font-family:var(--ff-display);font-size:clamp(32px,5vw,58px);font-weight:700;color:var(--navy);margin-bottom:14px}
+.contact-hero p{font-size:17px;color:var(--grey);font-weight:300}
+.contact-body{padding:0 5% 80px;max-width:1100px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:72px;align-items:start}
+.contact-info-title{font-family:var(--ff-display);font-size:22px;font-weight:600;color:var(--navy);margin-bottom:28px}
+.ci-item{display:flex;gap:16px;margin-bottom:22px;padding-bottom:22px;border-bottom:1px solid rgba(0,0,0,0.07)}
+.ci-item:last-of-type{border:none;margin-bottom:0}
+.ci-icon{width:40px;height:40px;background:var(--cream2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:17px}
+.ci-label{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:4px;font-weight:600}
+.ci-value{font-size:14px;color:var(--navy);font-weight:500;line-height:1.55}
+.ci-value a{color:var(--navy);text-decoration:none}
+.ci-value a:hover{color:var(--gold)}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:var(--white);padding:11px 22px;font-size:13px;font-weight:600;border:none;cursor:pointer;margin-top:16px;font-family:var(--ff-body);transition:opacity 0.2s;text-decoration:none}
+.wa-btn:hover{opacity:0.9}
+.contact-form{background:var(--white);padding:44px;border:1px solid rgba(0,0,0,0.07)}
+.form-title{font-family:var(--ff-display);font-size:22px;color:var(--navy);margin-bottom:28px;padding-bottom:18px;border-bottom:2px solid var(--gold)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--grey);margin-bottom:7px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid rgba(0,0,0,0.12);background:var(--cream);font-family:var(--ff-body);font-size:14px;color:var(--navy);outline:none;transition:border-color 0.2s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--gold);background:var(--white)}
+.form-group textarea{resize:vertical;min-height:90px}
+.form-check{display:flex;gap:10px;align-items:flex-start;margin:2px 0 20px;font-size:13px;color:var(--grey);cursor:pointer}
+.form-check input{margin-top:3px;accent-color:var(--gold);flex-shrink:0}
+.btn-submit{width:100%;background:var(--gold);color:var(--navy);border:none;padding:15px;font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;font-family:var(--ff-body)}
+.btn-submit:hover{background:var(--navy);color:var(--gold)}
+.btn-submit:disabled{opacity:0.6;cursor:not-allowed}
+.map-section{height:280px;background:var(--navy2);display:flex;align-items:center;justify-content:center}
+.map-section iframe{width:100%;height:100%;border:0}
 
-        /* --- MOBILE RESPONSIVE --- */
-        @media (max-width: 768px) {
-            /* Mobile Menu Display Options */
-            .menu-toggle { display: block; }
-            
-            .nav-links { 
-                position: absolute; 
-                top: 100%; 
-                left: 0; 
-                width: 100%; 
-                background-color: var(--white); 
-                flex-direction: column; 
-                gap: 0; 
-                text-align: center; 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-                max-height: 0; 
-                overflow: hidden; 
-                transition: max-height 0.4s ease-out; 
-            }
-            
-            .nav-links.active { max-height: 400px; } /* Dropdown animation */
-            
-            .nav-links a { 
-                color: var(--primary) !important; /* Force dark text on white bg */
-                padding: 15px 0; 
-                display: block; 
-                border-bottom: 1px solid #eee; 
-                width: 100%;
-            }
+/* ── NOTIFY BAR ── */
+.notify{display:none;background:#e8f5e9;border:1px solid #a5d6a7;padding:14px 20px;font-size:14px;color:#2e7d32;margin-bottom:16px}
+.notify.show{display:block}
+.notify.error{display:block;background:#fdecea;border-color:#f5c6cb;color:#b71c1c}
 
-            .hero-actions { flex-direction: column; }
-            .about-grid, .project-grid, .contact-grid { grid-template-columns: 1fr; }
-            .vision-mission-cards { grid-template-columns: 1fr; gap: 1.5rem; }
-            .about-image { height: 320px; }
-        }
-    </style>
+/* ── MODAL ── */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.72);z-index:2000;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--white);max-width:500px;width:100%;padding:44px;position:relative;max-height:90vh;overflow-y:auto}
+.modal-close{position:absolute;top:18px;right:18px;width:34px;height:34px;border:1px solid rgba(0,0,0,0.12);background:none;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;color:var(--grey)}
+.modal h3{font-family:var(--ff-display);font-size:22px;color:var(--navy);margin-bottom:6px}
+.modal-proj-name{font-size:12px;color:var(--gold);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid rgba(0,0,0,0.08)}
+.modal-success{text-align:center;padding:32px 0;display:none}
+.modal-success .ms-icon{font-size:44px;margin-bottom:14px}
+.modal-success h3{font-family:var(--ff-display);font-size:22px;color:var(--navy)}
+.modal-success p{font-size:14px;color:var(--grey);margin-top:8px;line-height:1.6}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{position:fixed;bottom:28px;right:28px;width:52px;height:52px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;z-index:900;box-shadow:0 4px 20px rgba(37,211,102,0.35);transition:transform 0.2s;text-decoration:none;color:white}
+.wa-float:hover{transform:scale(1.1)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:960px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .stats-grid{grid-template-columns:repeat(3,1fr)}
+  .proj-card:first-child,.proj-card:last-child{grid-column:span 1}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .why-grid,.team-grid{grid-template-columns:repeat(2,1fr)}
+  .testi-cards,.vm-grid,.contact-grid,.story-grid,.footer-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  .founder-card{grid-template-columns:1fr;text-align:center}
+  .founder-logo-circle{margin:0 auto}
+  .founder-quote{text-align:left}
+  .founder-contact{justify-content:center}
+}
+@media(max-width:640px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stat-item:nth-child(5){border-right:none;grid-column:span 2}
+  .why-grid,.team-grid{grid-template-columns:1fr}
+  .hero-btns{flex-direction:column;align-items:center}
+  .projects-grid{grid-template-columns:1fr}
+  .contact-form{padding:28px 20px}
+  .modal{padding:28px 20px}
+  .footer-grid{grid-template-columns:1fr}
+  .logo img{height:36px}
+  .logo-top{font-size:15px}
+}
+</style>
 </head>
 <body>
 
-    <!-- STICKY HEADER WITH MOBILE TOGGLE -->
-    <header class="header" id="header">
-        <a href="#home" class="logo">
-            <img src="./logo.png" alt="The Patil Realty Logo">
-        </a>
-        
-        <!-- Mobile Menu Hamburger Icon -->
-        <div class="menu-toggle" id="mobile-menu">
-            <i data-lucide="menu" style="width: 28px; height: 28px;"></i>
+<!-- ══ NAVIGATION ══ -->
+<nav id="mainNav" class="nav-dark">
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <img src="logo.png" alt="The Patil Realty Logo">
+      <div class="logo-text">
+        <span class="logo-top">The Patil Realty</span>
+        <span class="logo-sub">Building Legacies Since 1999</span>
+      </div>
+    </div>
+    <ul class="nav-links" id="desktopNav">
+      <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+      <li><a onclick="showPage('about')" id="nav-about">About Us</a></li>
+      <li><a onclick="showPage('projects')" id="nav-projects">Upcoming Projects</a></li>
+      <li><a onclick="showPage('contact')" id="nav-contact">Contact Us</a></li>
+    </ul>
+    <button class="nav-cta" onclick="showPage('contact')">Enquire Now</button>
+    <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ══ MOBILE MENU ══ -->
+<div class="mobile-menu" id="mobileMenu">
+  <a onclick="showPage('home');closeMobileMenu()" id="mob-home">Home</a>
+  <div class="mob-divider"></div>
+  <a onclick="showPage('about');closeMobileMenu()" id="mob-about">About Us</a>
+  <div class="mob-divider"></div>
+  <a onclick="showPage('projects');closeMobileMenu()" id="mob-projects">Upcoming Projects</a>
+  <div class="mob-divider"></div>
+  <a onclick="showPage('contact');closeMobileMenu()" id="mob-contact">Contact Us</a>
+  <div class="mob-divider"></div>
+  <a class="mob-cta" onclick="showPage('contact');closeMobileMenu()">Enquire Now</a>
+</div>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div><div class="hero-pattern"></div>
+    <div class="hero-img"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Mumbai & Maharashtra's Trusted Real Estate Developer</p>
+      <h1 class="hero-title">Building Dreams.<br><em>Delivering Legacies.</em></h1>
+      <p class="hero-sub">Crafting exceptional homes across Maharashtra since 1999 — where every brick is a promise kept.</p>
+      <div class="hero-btns">
+        <button class="btn-gold" onclick="showPage('projects')">Explore Projects</button>
+        <button class="btn-outline-w" onclick="showPage('contact')">Contact Us</button>
+      </div>
+    </div>
+    <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
+  </section>
+
+  <section class="stats-bar">
+    <div class="stats-grid">
+      <div class="stat-item reveal"><div class="stat-num" data-target="25" data-suffix="+">0</div><div class="stat-label">Years of Excellence</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="5000" data-suffix="+">0</div><div class="stat-label">Happy Families</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="12" data-suffix="">0</div><div class="stat-label">Active Projects</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="8" data-suffix="">0</div><div class="stat-label">Cities Served</div></div>
+      <div class="stat-item reveal"><div class="stat-num" data-target="1500" data-suffix=" Cr+">0</div><div class="stat-label">₹ Worth Delivered</div></div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0;background:var(--cream)">
+    <div class="projects-header reveal">
+      <div><p class="section-label">Portfolio</p><h2 class="section-title">Signature Projects</h2></div>
+      <button style="background:transparent;border:1.5px solid var(--navy);color:var(--navy);padding:12px 24px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:var(--ff-body)" onclick="showPage('projects')">View All Projects</button>
+    </div>
+    <div class="projects-grid">
+      <div class="proj-card reveal">
+        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80')"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><span class="proj-badge badge-move">Ready to Move</span><div class="proj-name">Patil Grandeur</div><div class="proj-loc">📍 Kothrud, Pune</div><div class="proj-details"><span class="proj-tag">2 & 3 BHK</span><span class="proj-tag">From ₹85L</span></div></div>
+        <button class="proj-hover-cta" onclick="openEnquiry('Patil Grandeur')">Enquire Now</button>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><span class="proj-badge badge-ongoing">Under Construction</span><div class="proj-name">Patil Heights</div><div class="proj-loc">📍 Nashik</div><div class="proj-details"><span class="proj-tag">1, 2 & 3 BHK</span></div></div>
+        <button class="proj-hover-cta" onclick="openEnquiry('Patil Heights')">Enquire Now</button>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><span class="proj-badge badge-upcoming">Pre-Launch</span><div class="proj-name">Patil Serenity Villas</div><div class="proj-loc">📍 Kolhapur</div><div class="proj-details"><span class="proj-tag">3 & 4 BHK Villas</span></div></div>
+        <button class="proj-hover-cta" onclick="openEnquiry('Patil Serenity Villas')">Register Interest</button>
+      </div>
+      <div class="proj-card reveal" style="grid-column:span 2">
+        <div class="proj-img" style="height:280px;background-image:url('Shroff1.jpeg')"></div>
+        <div class="proj-overlay"></div>
+        <div class="proj-info"><span class="proj-badge badge-upcoming">Upcoming</span><div class="proj-name">Juhu Bungalow</div><div class="proj-loc">📍 Juhu, Vile Parle West, Mumbai</div><div class="proj-details"><span class="proj-tag">Luxury Bungalow</span><span class="proj-tag">Next to JW Marriott</span></div></div>
+        <button class="proj-hover-cta" onclick="openEnquiry('Juhu Bungalow')">Enquire Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section why-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="reveal" style="text-align:center"><p class="section-label">Our Promise</p><h2 class="section-title">Why Choose The Patil Realty?</h2></div>
+      <div class="why-grid">
+        <div class="why-card reveal"><span class="why-icon">🏗️</span><div class="why-title">Quality Construction</div><div class="why-desc">RERA-certified projects using ISI-marked materials with rigorous quality checks at every stage.</div></div>
+        <div class="why-card reveal"><span class="why-icon">📍</span><div class="why-title">Prime Locations</div><div class="why-desc">Strategically selected sites near highways, metro corridors, top schools, and business hubs.</div></div>
+        <div class="why-card reveal"><span class="why-icon">💼</span><div class="why-title">Transparent Dealings</div><div class="why-desc">No hidden costs, complete legal clarity, and dedicated relationship managers from booking to possession.</div></div>
+        <div class="why-card reveal"><span class="why-icon">🤝</span><div class="why-title">After-Sales Support</div><div class="why-desc">Dedicated CRM team and a 5-year structural warranty — our relationship doesn't end at possession.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="testi-section">
+    <div style="max-width:1200px;margin:0 auto">
+      <div class="reveal" style="text-align:center"><p class="section-label" style="color:var(--gold)">What Our Residents Say</p><h2 class="section-title section-title-white">5,000+ Families Trust Us</h2></div>
+      <div class="testi-cards">
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"We moved into Patil Grandeur in 2023 and the quality is simply exceptional. Every detail was attended to with care. Our family couldn't be happier."</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajesh Kulkarni</div><div class="testi-proj">Patil Grandeur, Pune</div></div></div></div>
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"As an NRI investing from Dubai, I was worried about managing the process remotely. The Patil Realty team made it seamless — transparent, professional, and timely."</p><div class="testi-author"><div class="testi-avatar">SP</div><div><div class="testi-name">Suresh Patkar</div><div class="testi-proj">Patil Heights, Nashik</div></div></div></div>
+        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"The location of Serenity Villas is breathtaking. Premium amenities, spacious layouts, and a community that feels like home from day one."</p><div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Anita Misal</div><div class="testi-proj">Patil Serenity, Kolhapur</div></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="awards-section">
+    <div style="text-align:center" class="reveal"><p class="section-label">Recognition</p><h2 class="section-title">Awards & Certifications</h2></div>
+    <div class="awards-strip">
+      <div class="award-item reveal"><span class="award-icon">🏆</span><div class="award-name">CREDAI Member</div></div>
+      <div class="award-item reveal"><span class="award-icon">✅</span><div class="award-name">RERA Certified</div></div>
+      <div class="award-item reveal"><span class="award-icon">🎖️</span><div class="award-name">Times Realty Icon</div></div>
+      <div class="award-item reveal"><span class="award-icon">⭐</span><div class="award-name">ISO 9001:2015</div></div>
+      <div class="award-item reveal"><span class="award-icon">🥇</span><div class="award-name">Best Developer 2023</div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo-row"><img src="logo.png" alt="The Patil Realty"><div class="footer-logo-text">The Patil Realty</div></div>
+        <div class="footer-tagline">Building Dreams. Delivering Legacies.</div>
+        <div class="footer-desc">A trusted name in Maharashtra real estate since 1999. Founded by Sachin Patil, built on trust and quality.</div>
+        <div class="rera-badge">RERA Reg. No: P52100012345</div>
+      </div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('projects')">Upcoming Projects</a></li><li><a onclick="showPage('contact')">Contact Us</a></li></ul></div>
+      <div><div class="footer-heading">Projects</div><ul class="footer-links"><li><a onclick="openEnquiry('Patil Grandeur')">Patil Grandeur</a></li><li><a onclick="openEnquiry('Patil Heights')">Patil Heights</a></li><li><a onclick="openEnquiry('Patil Serenity')">Patil Serenity</a></li><li><a onclick="openEnquiry('Patil Skyline')">Patil Skyline</a></li><li><a onclick="openEnquiry('Juhu Bungalow')">Juhu Bungalow</a></li></ul></div>
+      <div><div class="footer-heading">Contact</div><div class="footer-ci">📍 Office No 303, Relcon House Premises Society Ltd., MG Road, Vile Parle East, Mumbai 400057</div><div class="footer-ci">📞 +91 70303 03492</div><div class="footer-ci">✉️ sachinpatil021976@gmail.com</div><div class="footer-ci">🕐 Mon–Sat, 10am–7pm</div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 The Patil Realty. All Rights Reserved.</span><span>Owner: Sachin Patil</span></div>
+  </footer>
+</div>
+
+<!-- ══════════ ABOUT PAGE ══════════ -->
+<div class="page" id="page-about">
+  <section class="dark-hero">
+    <div class="dark-hero-img" style="background-image:url('https://images.unsplash.com/photo-1590725140246-20acddc1ec6d?w=1800&q=80')"></div>
+    <div class="dark-hero-content">
+      <p class="section-label">Our Story</p>
+      <h1 style="font-family:var(--ff-display);font-size:clamp(34px,5vw,60px);font-weight:700;color:var(--white);line-height:1.1">A Legacy Built<br>on <em style="color:var(--gold)">Trust</em></h1>
+    </div>
+  </section>
+
+  <!-- FOUNDER / OWNER -->
+  <section class="founder-section">
+    <div style="text-align:center;margin-bottom:56px" class="reveal">
+      <p class="section-label">The Man Behind the Mission</p>
+      <h2 class="section-title">Meet Our Founder</h2>
+    </div>
+    <div class="founder-card reveal">
+      <div class="founder-logo-circle"><img src="logo.png" alt="Sachin Patil - The Patil Realty"></div>
+      <div class="founder-info">
+        <div class="fl">Founder & Owner</div>
+        <h3>Sachin Patil</h3>
+        <div class="designation">Owner · The Patil Realty · Mumbai, Maharashtra</div>
+        <p>Sachin Patil is a first-generation real estate entrepreneur who built The Patil Realty from the ground up, driven by one vision: to give every Maharashtra family a home they can be proud of — without hidden costs, broken promises, or compromised quality.</p>
+        <p>With deep roots in Maharashtra and an unwavering commitment to transparency, Sachin has personally overseen every project delivered by The Patil Realty — from the first apartment complex in Pune to the upcoming projects across the state.</p>
+        <p>Under his leadership, The Patil Realty has grown to become one of the region's most trusted developer names, serving thousands of families across Maharashtra.</p>
+        <div class="founder-quote">"A home is not just a structure — it is a family's greatest investment and most precious memory. We build both."</div>
+        <div class="founder-contact">
+          <div class="fc-item"><b>📞</b> +91 70303 03492</div>
+          <div class="fc-item"><b>✉️</b> sachinpatil021976@gmail.com</div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <nav class="nav-links" id="nav-links">
-            <a href="#home">Home</a>
-            <a href="#about">About Us</a>
-            <a href="#projects">Upcoming Projects</a>
-            <a href="#contact">Contact Us</a>
-        </nav>
-    </header>
+  <div class="story-section">
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p class="section-label">Since 1999</p>
+        <h2 class="section-title">From a Vision to 5,000+ Homes</h2>
+        <p class="lead">What began as one man's dream to build dignified, honest homes for Maharashtra's growing middle class has grown into one of the state's most respected real estate groups.</p>
+        <p>The Patil Realty was built on a single promise: no compromise on quality, no hidden costs, and no broken timelines. Twenty-five years later, that promise remains our North Star.</p>
+        <p>Today, we operate across multiple cities in Maharashtra — from compact 1 BHK apartments in Nashik to sprawling luxury villas in Kolhapur, and now a Grade-A commercial tower in Mumbai.</p>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">1999</div><div class="tl-event">Founded in Pune by Sachin Patil. First project: 48 apartments in Kothrud.</div></div>
+          <div class="tl-item"><div class="tl-year">2005</div><div class="tl-event">Delivered first 500 homes. Expanded to Nashik and Aurangabad.</div></div>
+          <div class="tl-item"><div class="tl-year">2012</div><div class="tl-event">Awarded 'Best Emerging Developer' by Times Realty. Crossed ₹500 Cr in deliveries.</div></div>
+          <div class="tl-item"><div class="tl-year">2018</div><div class="tl-event">Launched luxury segment with Serenity Villas, Kolhapur. ISO 9001 certified.</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-event">5,000+ families. 8 cities. ₹1,500 Cr+ delivered. Patil Skyline, Mumbai underway.</div></div>
+        </div>
+      </div>
+      <div class="story-img reveal"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="The Patil Realty Legacy"></div>
+    </div>
+  </div>
 
-    <main>
-        <!-- 1. HERO SECTION (Code Animated Edition) -->
-        <section id="home" class="hero">
-            <div class="hero-slideshow">
-                <div class="slide"></div>
-                <div class="slide"></div>
-                <div class="slide"></div>
+  <section class="vm-section">
+    <div style="text-align:center" class="reveal"><p class="section-label" style="color:var(--gold)">What Drives Us</p><h2 class="section-title section-title-white">Vision & Mission</h2></div>
+    <div class="vm-grid">
+      <div class="vm-card reveal"><div class="vm-card-label">Our Vision</div><div class="vm-card-title">To be Maharashtra's most trusted home builder — where every family's biggest investment is met with unwavering quality and care.</div><div class="vm-card-text">We envision a Maharashtra where every family lives in a home built with honesty, durability, and pride.</div></div>
+      <div class="vm-card reveal"><div class="vm-card-label">Our Mission</div><div class="vm-card-title">Deliver exceptional real estate through transparent processes, RERA compliance, and a lifetime commitment to our residents.</div><div class="vm-card-text">We measure success not in square footage but in smiles — the moment a family walks into their new home for the first time.</div></div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div style="text-align:center;max-width:1200px;margin:0 auto" class="reveal"><p class="section-label">Core Team</p><h2 class="section-title">Leadership</h2></div>
+    <div class="team-grid">
+      <div class="team-card reveal"><div class="team-avatar">SP</div><div class="team-info"><div class="team-name">Sachin Patil</div><div class="team-role">Founder & Owner</div><div class="team-bio">Visionary entrepreneur who built The Patil Realty from a single project into a trusted Maharashtra name.</div></div></div>
+      <div class="team-card reveal"><div class="team-avatar">VP</div><div class="team-info"><div class="team-name">Vikram Patil</div><div class="team-role">Director, Operations</div><div class="team-bio">Oversees project execution, contractor relations, and delivery timelines across all active sites.</div></div></div>
+      <div class="team-card reveal"><div class="team-avatar">AP</div><div class="team-info"><div class="team-name">Ananya Patil</div><div class="team-role">Director, Design</div><div class="team-bio">Interior architect ensuring every Patil Realty home is warm, functional, and beautifully detailed.</div></div></div>
+      <div class="team-card reveal"><div class="team-avatar">AK</div><div class="team-info"><div class="team-name">Arun Kulkarni</div><div class="team-role">Chief Technical Officer</div><div class="team-bio">Structural engineer ensuring every building meets global standards and full RERA compliance.</div></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo-row"><img src="logo.png" alt="The Patil Realty"><div class="footer-logo-text">The Patil Realty</div></div><div class="footer-tagline">Building Dreams. Delivering Legacies.</div><div class="footer-desc">Founded by Sachin Patil. A trusted name in Maharashtra real estate since 1999.</div><div class="rera-badge">RERA Reg. No: P52100012345</div></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('contact')">Contact Us</a></li></ul></div>
+      <div></div>
+      <div><div class="footer-heading">Contact</div><div class="footer-ci">📍 303 Relcon House, MG Road, Vile Parle East, Mumbai 400057</div><div class="footer-ci">📞 +91 70303 03492</div><div class="footer-ci">✉️ sachinpatil021976@gmail.com</div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 The Patil Realty. All Rights Reserved.</span></div>
+  </footer>
+</div>
+
+<!-- ══════════ PROJECTS PAGE ══════════ -->
+<div class="page" id="page-projects">
+  <section class="dark-hero">
+    <div class="dark-hero-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=80')"></div>
+    <div class="dark-hero-content">
+      <p class="section-label">Portfolio 2024–25</p>
+      <h1 style="font-family:var(--ff-display);font-size:clamp(32px,5vw,58px);font-weight:700;color:var(--white);line-height:1.1">The Future<br><em style="color:var(--gold)">Starts Here</em></h1>
+      <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-top:14px;font-weight:300">Register now for exclusive pre-launch pricing. RERA-certified projects.</p>
+    </div>
+  </section>
+  <div class="filter-bar">
+    <div class="filter-inner">
+      <button class="filter-btn active" onclick="filterProj('all',this)">All Projects</button>
+      <button class="filter-btn" onclick="filterProj('residential',this)">Residential</button>
+      <button class="filter-btn" onclick="filterProj('commercial',this)">Commercial</button>
+      <button class="filter-btn" onclick="filterProj('ready',this)">Ready to Move</button>
+      <button class="filter-btn" onclick="filterProj('construction',this)">Under Construction</button>
+      <button class="filter-btn" onclick="filterProj('upcoming',this)">Upcoming</button>
+      <button class="filter-btn" onclick="filterProj('bungalow',this)">Bungalows</button>
+    </div>
+  </div>
+  <div class="all-projects">
+    <div class="all-proj-grid" id="projGrid">
+      <div class="big-proj-card reveal" data-cat="residential ready">
+        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"><span class="bpc-badge" style="background:rgba(45,122,79,0.92);color:#fff">✅ Ready to Move</span></div>
+        <div class="bpc-body"><div class="bpc-name">Patil Grandeur</div><div class="bpc-loc">📍 Kothrud, Pune</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>2 & 3 BHK</span></div><div class="bpc-meta-item"><label>Possession</label><span>Dec 2024</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹85 Lakh</span></div><div class="bpc-meta-item"><label>Total Units</label><span>180 Apts</span></div></div><div class="bpc-rera">RERA: P52100029876</div><button class="bpc-enquire" onclick="openEnquiry('Patil Grandeur')">Enquire Now →</button></div>
+      </div>
+      <div class="big-proj-card reveal" data-cat="residential construction">
+        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"><span class="bpc-badge" style="background:rgba(59,130,246,0.92);color:#fff">🔨 Under Construction</span></div>
+        <div class="bpc-body"><div class="bpc-name">Patil Heights</div><div class="bpc-loc">📍 Gangapur Road, Nashik</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>1, 2 & 3 BHK</span></div><div class="bpc-meta-item"><label>Possession</label><span>Jun 2026</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹45 Lakh</span></div><div class="bpc-meta-item"><label>Total Units</label><span>240 Apts</span></div></div><div class="bpc-rera">RERA: P52100031245</div><button class="bpc-enquire" onclick="openEnquiry('Patil Heights')">Enquire Now →</button></div>
+      </div>
+      <div class="big-proj-card reveal" data-cat="residential upcoming">
+        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')"><span class="bpc-badge" style="background:rgba(201,151,58,0.92);color:#0D1B2A">🔜 Pre-Launch</span></div>
+        <div class="bpc-body"><div class="bpc-name">Patil Serenity Villas</div><div class="bpc-loc">📍 Tarabai Park, Kolhapur</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>3 & 4 BHK Villas</span></div><div class="bpc-meta-item"><label>Possession</label><span>Dec 2026</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹1.8 Cr</span></div><div class="bpc-meta-item"><label>Total Units</label><span>64 Villas</span></div></div><div class="bpc-rera">RERA: Registration In Progress</div><button class="bpc-enquire" onclick="openEnquiry('Patil Serenity Villas')">Register Interest →</button></div>
+      </div>
+      <div class="big-proj-card reveal" data-cat="commercial construction">
+        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')"><span class="bpc-badge" style="background:rgba(59,130,246,0.92);color:#fff">🔨 Under Construction</span></div>
+        <div class="bpc-body"><div class="bpc-name">Patil Skyline</div><div class="bpc-loc">📍 BKC, Mumbai</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Type</label><span>Grade A Offices</span></div><div class="bpc-meta-item"><label>Possession</label><span>Mar 2027</span></div><div class="bpc-meta-item"><label>Area From</label><span>500 sq.ft.</span></div><div class="bpc-meta-item"><label>Total Area</label><span>2.5L sq.ft.</span></div></div><div class="bpc-rera">RERA: P51900044123</div><button class="bpc-enquire" onclick="openEnquiry('Patil Skyline')">Enquire Now →</button></div>
+      </div>
+
+      <div class="big-proj-card reveal" data-cat="residential bungalow upcoming">
+        <div class="bpc-img bpc-gallery" id="bungalowImg" style="background-image:url('Shroff1.jpeg')">
+          <span class="bpc-badge" style="background:rgba(201,151,58,0.92);color:#0D1B2A">🔜 Upcoming</span>
+          <div class="bpc-gallery-dots">
+            <span class="bpc-dot active" onclick="setBungalowImg(0,event)"></span>
+            <span class="bpc-dot" onclick="setBungalowImg(1,event)"></span>
+          </div>
+        </div>
+        <div class="bpc-body">
+          <div class="bpc-name">Juhu Bungalow</div>
+          <div class="bpc-loc">📍 Next to JW Marriott, Juhu, Vile Parle West, Mumbai</div>
+          <div class="bpc-meta">
+            <div class="bpc-meta-item"><label>Type</label><span>Luxury Bungalow</span></div>
+            <div class="bpc-meta-item"><label>CTS No.</label><span>905/A</span></div>
+            <div class="bpc-meta-item"><label>Location</label><span>Darius Shroff Home</span></div>
+            <div class="bpc-meta-item"><label>Status</label><span>Upcoming</span></div>
+          </div>
+          <div class="bpc-rera">RERA: Registration In Progress</div>
+          <button class="bpc-enquire" onclick="openEnquiry('Juhu Bungalow')">Enquire Now →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo-row"><img src="logo.png" alt="The Patil Realty"><div class="footer-logo-text">The Patil Realty</div></div><div class="footer-tagline">Building Dreams. Delivering Legacies.</div><div class="rera-badge">RERA Reg. No: P52100012345</div></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div></div>
+      <div><div class="footer-heading">Contact</div><div class="footer-ci">📞 +91 70303 03492</div><div class="footer-ci">✉️ sachinpatil021976@gmail.com</div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 The Patil Realty.</span></div>
+  </footer>
+</div>
+
+<!-- ══════════ CONTACT PAGE ══════════ -->
+<div class="page" id="page-contact">
+  <div class="contact-hero">
+    <p class="section-label">Get in Touch</p>
+    <h1>Let's Build Your Dream<br><em style="color:var(--gold);font-style:italic">Together</em></h1>
+    <p>Our team is ready to assist you — reach out today.</p>
+  </div>
+  <div class="contact-body">
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="contact-info-title">Reach Us Directly</div>
+        <div class="ci-item"><div class="ci-icon">📍</div><div><div class="ci-label">Registered Office</div><div class="ci-value">Office No 303, Relcon House<br>Premises Society Ltd., MG Road,<br>Agarwal Market, Vile Parle East,<br>Mumbai, Maharashtra 400057</div></div></div>
+        <div class="ci-item"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><div class="ci-value"><a href="tel:+917030303492">+91 70303 03492</a></div></div></div>
+        <div class="ci-item"><div class="ci-icon">✉️</div><div><div class="ci-label">Email</div><div class="ci-value"><a href="mailto:sachinpatil021976@gmail.com">sachinpatil021976@gmail.com</a></div></div></div>
+        <div class="ci-item"><div class="ci-icon">👤</div><div><div class="ci-label">Owner</div><div class="ci-value">Sachin Patil, Founder</div></div></div>
+        <div class="ci-item"><div class="ci-icon">🕐</div><div><div class="ci-label">Working Hours</div><div class="ci-value">Monday – Saturday, 10am – 7pm</div></div></div>
+        <a class="wa-btn" href="https://wa.me/917030303492" target="_blank">💬 Chat on WhatsApp</a>
+      </div>
+
+      <div class="contact-form reveal">
+        <div class="form-title">Send an Enquiry</div>
+        <div class="notify" id="formNotify"></div>
+
+        <!--
+          ════════════════════════════════════════════════════════════
+          FORMSUBMIT SETUP — sends enquiries straight to your email
+          ════════════════════════════════════════════════════════════
+          This form posts to FormSubmit.co, which forwards every
+          submission to: chinmay9000@gmail.com
+
+          ⚠️ FIRST-TIME ACTIVATION STEP (only once, important!):
+          The very first time someone submits this form after you
+          publish the site, FormSubmit will send a confirmation email
+          to chinmay9000@gmail.com asking to "Activate Form". You (or
+          whoever owns that inbox) must click that confirmation link.
+          After that one-time activation, every future submission is
+          delivered straight to the inbox automatically — no further
+          action needed.
+
+          You can test it immediately after publishing by filling the
+          form yourself once to trigger that activation email.
+          ════════════════════════════════════════════════════════════
+        -->
+        <form id="contactFormEl" action="https://formsubmit.co/chinmay9000@gmail.com" method="POST">
+          <input type="hidden" name="_subject" value="New Enquiry — The Patil Realty Website">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <div class="form-row">
+            <div class="form-group"><label>Full Name *</label><input type="text" name="Full Name" placeholder="Rajesh Kulkarni" required></div>
+            <div class="form-group"><label>Phone Number *</label><input type="tel" name="Phone Number" placeholder="+91 98765 43210" required></div>
+          </div>
+          <div class="form-group"><label>Email Address</label><input type="email" name="Email" placeholder="your@email.com"></div>
+          <div class="form-row">
+            <div class="form-group"><label>City</label><input type="text" name="City" placeholder="Mumbai"></div>
+            <div class="form-group"><label>Project of Interest</label>
+              <select name="Project of Interest">
+                <option value="">Select a project</option>
+                <option>Patil Grandeur – Pune</option>
+                <option>Patil Heights – Nashik</option>
+                <option>Patil Serenity Villas – Kolhapur</option>
+                <option>Patil Skyline – Mumbai</option>
+                <option>Juhu Bungalow – Vile Parle West</option>
+                <option>General Inquiry</option>
+              </select>
             </div>
-            <div class="hero-overlay"></div>
-            <div class="hero-grid-lines"></div>
-            
-            <div class="hero-content fade-in">
-                <h1 class="h1-hero fade-in delay-1">Building Dreams.<br>Delivering Legacies.</h1>
-                <p class="body-large fade-in delay-2" style="color: #F8F5EE; margin-top: 1.5rem;">Trusted real estate development across Maharashtra since 1999</p>
-                <div class="hero-actions fade-in delay-3">
-                    <a href="#projects" class="btn btn-primary">Explore Projects</a>
-                    <a href="#contact" class="btn btn-outline">Contact Us</a>
-                </div>
-            </div>
-        </section>
+          </div>
+          <div class="form-group"><label>Message</label><textarea name="Message" placeholder="Tell us your requirements, budget, or any questions..."></textarea></div>
+          <label class="form-check"><input type="checkbox" checked required> I agree to be contacted by The Patil Realty via call, WhatsApp, or email.</label>
+          <button type="submit" class="btn-submit" id="contactSubmitBtn">Send Enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="map-section">
+    <iframe src="https://maps.google.com/maps?q=Relcon%20House%2C%20MG%20Road%2C%20Vile%20Parle%20East%2C%20Mumbai%20400057&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <footer>
+    <div class="footer-grid">
+      <div><div class="footer-logo-row"><img src="logo.png" alt="The Patil Realty"><div class="footer-logo-text">The Patil Realty</div></div><div class="footer-tagline">Building Dreams. Delivering Legacies.</div><div class="rera-badge">RERA Reg. No: P52100012345</div></div>
+      <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About</a></li><li><a onclick="showPage('projects')">Projects</a></li><li><a onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div></div>
+      <div><div class="footer-heading">Contact</div><div class="footer-ci">📍 303 Relcon House, MG Road, Vile Parle East, Mumbai 400057</div><div class="footer-ci">📞 +91 70303 03492</div><div class="footer-ci">✉️ sachinpatil021976@gmail.com</div><div class="footer-ci">🕐 Mon–Sat, 10am–7pm</div></div>
+    </div>
+    <div class="footer-bottom"><span>© 2025 The Patil Realty. All Rights Reserved.</span></div>
+  </footer>
+</div>
 
-        <!-- 2. STATS BAR -->
-        <section class="stats-bar">
-            <div class="stat-item reveal">
-                <div class="data-accent"><span class="counter" data-target="25">0</span>+</div>
-                <p>Years of Excellence</p>
-            </div>
-            <div class="stat-item reveal">
-                <div class="data-accent"><span class="counter" data-target="5000">0</span>+</div>
-                <p>Happy Families</p>
-            </div>
-            <div class="stat-item reveal">
-                <div class="data-accent"><span class="counter" data-target="12">0</span></div>
-                <p>Ongoing Projects</p>
-            </div>
-            <div class="stat-item reveal">
-                <div class="data-accent">₹<span class="counter" data-target="1500">0</span>Cr+</div>
-                <p>Properties Delivered</p>
-            </div>
-        </section>
+<!-- ENQUIRY MODAL -->
+<div class="modal-backdrop" id="enquiryModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Register Your Interest</h3>
+    <div class="modal-proj-name" id="modalProjName">Patil Grandeur</div>
 
-        <!-- 3. ABOUT US SECTION -->
-        <section id="about" class="section-padding bg-white">
-            <div class="text-center reveal">
-                <h2 class="h2-section">A Legacy Built on Trust</h2>
-                <p class="body-large">Rooted in Maharashtra, forward-looking in our design.</p>
-            </div>
-            
-            <div class="about-grid reveal">
-                <div class="about-content">
-                    <h3>Our Story</h3>
-                    <p>Founded with a singular vision to redefine the real estate landscape, The Patil Realty has been a cornerstone of trust, transparency, and architectural brilliance in Maharashtra. Under the visionary leadership of our founder, <strong>Sachin Patil</strong>, we have dedicated ourselves to creating not just physical structures, but vibrant communities where families thrive and legacies are born.</p>
-                    <p>From our very first project to our current pan-Maharashtra presence, our journey is defined by an uncompromising commitment to quality materials, strategic locations, and putting the homebuyer's needs first.</p>
-                    
-                    <div class="vision-mission-cards">
-                        <div class="vm-card">
-                            <h4>Our Vision</h4>
-                            <p>To be Maharashtra’s most trusted real estate developer, transforming skylines while building sustainable, world-class living spaces that endure for generations.</p>
-                        </div>
-                        <div class="vm-card">
-                            <h4>Our Mission</h4>
-                            <p>To deliver excellence every day through transparent dealings, strategic prime locations, and cutting-edge, RERA-certified construction practices.</p>
-                        </div>
-                    </div>
+    <div class="notify" id="modalNotify"></div>
 
-                    <div class="about-contact-info">
-                        <h4>Headquarters & Contact</h4>
-                        <p><i data-lucide="map-pin" style="width:18px; height:18px;"></i> <span>303 Relcon House, Mahatma Gandhi Rd, Agarwal Market, Vile Parle East, Mumbai, Maharashtra 400057</span></p>
-                        <p><i data-lucide="phone" style="width:18px; height:18px;"></i> <a href="tel:+919876543210">+91 98765 43210</a></p>
-                        <p><i data-lucide="mail" style="width:18px; height:18px;"></i> <a href="mailto:chinmaykarmalkar@yahoo.in">chinmaykarmalkar@yahoo.in</a></p>
-                    </div>
-                </div>
-                <div class="about-image-wrapper">
-                    <!-- Option 2 Placeholder Image (Bypasses ad-blockers) -->
-                    <img src="https://picsum.photos/1000/800" alt="Luxury Juhu Bungalow - The Patil Realty Legacy" class="about-image">
-                </div>
-            </div>
-        </section>
+    <form id="modalFormEl" action="https://formsubmit.co/chinmay9000@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New Project Enquiry — The Patil Realty">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="Project" id="modalProjectField" value="">
 
-        <!-- 4. FEATURED PROJECTS -->
-        <section id="projects" class="section-padding">
-            <div class="text-center reveal">
-                <h2 class="h2-section">Signature Projects</h2>
-                <p class="body-large">Discover our portfolio of premium developments across Maharashtra.</p>
-            </div>
+      <div class="form-group"><label>Full Name *</label><input type="text" name="Full Name" placeholder="Your full name" required></div>
+      <div class="form-row">
+        <div class="form-group"><label>Phone *</label><input type="tel" name="Phone" placeholder="+91 XXXXX XXXXX" required></div>
+        <div class="form-group"><label>Email</label><input type="email" name="Email" placeholder="your@email.com"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>City</label><input type="text" name="City" placeholder="Your city"></div>
+        <div class="form-group"><label>Configuration</label>
+          <select name="Configuration">
+            <option>1 BHK</option><option selected>2 BHK</option><option>3 BHK</option><option>4 BHK / Villa</option>
+          </select>
+        </div>
+      </div>
+      <label class="form-check"><input type="checkbox" checked required> I agree to be contacted via WhatsApp / Call / SMS.</label>
+      <button type="submit" class="btn-submit" id="modalSubmitBtn" style="margin-top:8px">Submit Enquiry →</button>
+    </form>
+  </div>
+</div>
 
-            <div class="project-grid">
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="status-badge bg-ongoing">Ongoing</span>
-                        <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Patil Heights" class="project-img">
-                    </div>
-                    <div class="project-info">
-                        <h3>Patil Heights</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px; height:14px;"></i> Nashik</span>
-                            <span><i data-lucide="home" style="width:14px; height:14px;"></i> 2 & 3 BHK</span>
-                        </div>
-                        <a href="#contact" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Enquire Now &rarr;</a>
-                    </div>
-                </div>
+<!-- WHATSAPP FLOAT -->
+<a class="wa-float" href="https://wa.me/917030303492" target="_blank" title="Chat on WhatsApp">💬</a>
 
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="status-badge bg-upcoming">Upcoming</span>
-                        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Patil Grandeur" class="project-img">
-                    </div>
-                    <div class="project-info">
-                        <h3>Patil Grandeur</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px; height:14px;"></i> Pune</span>
-                            <span><i data-lucide="home" style="width:14px; height:14px;"></i> 3 & 4 BHK</span>
-                        </div>
-                        <a href="#contact" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Enquire Now &rarr;</a>
-                    </div>
-                </div>
+<script>
+/* ── Page nav mode ── */
+const pageNavMode={home:'dark',about:'dark',projects:'dark',contact:'light'};
 
-                <div class="project-card reveal">
-                    <div class="project-img-wrapper">
-                        <span class="status-badge bg-ready">Ready to Move</span>
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Patil Skyline" class="project-img">
-                    </div>
-                    <div class="project-info">
-                        <h3>Patil Skyline</h3>
-                        <div class="project-meta">
-                            <span><i data-lucide="map-pin" style="width:14px; height:14px;"></i> Mumbai</span>
-                            <span><i data-lucide="briefcase" style="width:14px; height:14px;"></i> Commercial</span>
-                        </div>
-                        <a href="#contact" style="color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; text-transform: uppercase;">Enquire Now &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+function showPage(page){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  ['home','about','projects','contact'].forEach(id=>{
+    const el=document.getElementById('nav-'+id);
+    if(el) el.classList.toggle('active',id===page);
+    const mob=document.getElementById('mob-'+id);
+    if(mob) mob.classList.toggle('mob-active',id===page);
+  });
+  const nav=document.getElementById('mainNav');
+  nav.classList.remove('nav-dark','nav-light','scrolled');
+  nav.classList.add('nav-'+(pageNavMode[page]||'dark'));
+  window.scrollTo(0,0);
+  setTimeout(checkReveal,80);
+}
 
-        <!-- 5. CONTACT SECTION -->
-        <section id="contact" class="section-padding bg-white">
-            <div class="text-center reveal">
-                <h2 class="h2-section">Let's Build Your Dream Together</h2>
-                <p class="body-large">Our team is ready to assist you. Fill out the form below or reach out directly.</p>
-            </div>
+/* ── Scroll ── */
+window.addEventListener('scroll',()=>{
+  const nav=document.getElementById('mainNav');
+  if(nav.classList.contains('nav-light'))return;
+  nav.classList.toggle('scrolled',window.scrollY>60);
+  checkReveal();
+});
 
-            <div class="contact-grid reveal">
-                <div class="contact-info-blocks">
-                    <div class="info-card">
-                        <h3><i data-lucide="map-pin"></i> Registered Office</h3>
-                        <p>303 Relcon House, Mahatma Gandhi Rd,<br>Agarwal Market, Vile Parle East,<br>Vile Parle, Mumbai, Maharashtra 400057</p>
-                    </div>
-                    <div class="info-card">
-                        <h3><i data-lucide="phone"></i> Phone & WhatsApp</h3>
-                        <p><a href="tel:+919876543210">+91 98765 43210</a></p>
-                        <p>Mon–Sat, 10am–7pm</p>
-                    </div>
-                    <div class="info-card">
-                        <h3><i data-lucide="mail"></i> Email Address</h3>
-                        <p><a href="mailto:chinmaykarmalkar@yahoo.in">chinmaykarmalkar@yahoo.in</a></p>
-                    </div>
-                </div>
+/* ── Mobile menu ── */
+function toggleMobileMenu(){
+  const ham=document.getElementById('hamburger');
+  const menu=document.getElementById('mobileMenu');
+  ham.classList.toggle('open');
+  menu.classList.toggle('open');
+  document.body.style.overflow=menu.classList.contains('open')?'hidden':'';
+}
+function closeMobileMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow='';
+}
 
-                <div class="contact-form">
-                    <!-- FormSubmit Action URL -->
-                    <form action="https://formsubmit.co/chinmay9000@gmail.com" method="POST">
-                        <input type="hidden" name="_subject" value="New Website Enquiry - The Patil Realty">
-                        <input type="hidden" name="_captcha" value="false">
+/* ── Reveal on scroll ── */
+function checkReveal(){
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+    if(el.getBoundingClientRect().top<window.innerHeight-60) el.classList.add('visible');
+  });
+}
 
-                        <div class="form-group">
-                            <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" class="form-control" required placeholder="Enter your full name">
-                        </div>
+/* ── Stat counters ── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const el=e.target,target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'';
+    let v=0;const inc=target/(1800/16);
+    const t=setInterval(()=>{
+      v=Math.min(v+inc,target);
+      el.textContent=(target>=1000?Math.round(v).toLocaleString('en-IN'):Math.round(v))+suffix;
+      if(v>=target)clearInterval(t);
+    },16);
+    obs.unobserve(el);
+  });
+},{threshold:0.5});
+document.querySelectorAll('[data-target]').forEach(el=>obs.observe(el));
 
-                        <div class="form-group">
-                            <label for="mobile">Mobile Number *</label>
-                            <input type="tel" id="mobile" name="mobile" class="form-control" required placeholder="+91" pattern="^\+?[0-9]{10,12}$">
-                        </div>
+/* ── Modal ── */
+function openEnquiry(name){
+  document.getElementById('modalProjName').textContent=name;
+  document.getElementById('modalProjectField').value=name;
+  document.getElementById('modalFormEl').style.display='block';
+  document.getElementById('modalNotify').classList.remove('show','error');
+  document.getElementById('modalNotify').textContent='';
+  document.getElementById('enquiryModal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('enquiryModal').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.getElementById('enquiryModal').addEventListener('click',e=>{
+  if(e.target===document.getElementById('enquiryModal'))closeModal();
+});
 
-                        <div class="form-group">
-                            <label for="email">Email ID *</label>
-                            <input type="email" id="email" name="email" class="form-control" required placeholder="yourname@email.com">
-                        </div>
+/* ──────────────────────────────────────────────
+   FORM SUBMISSION — uses fetch() so the page never
+   navigates away to formsubmit.co. We show a nice
+   in-page "Thank you" message instead.
+   ────────────────────────────────────────────── */
+function handleFormSubmit(formEl, notifyEl, btnEl, successText, onDone){
+  formEl.addEventListener('submit', function(e){
+    e.preventDefault();
+    btnEl.disabled = true;
+    btnEl.textContent = 'Sending...';
+    const data = new FormData(formEl);
+    fetch(formEl.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(res=>{
+      notifyEl.classList.remove('error');
+      notifyEl.classList.add('show');
+      notifyEl.textContent = successText;
+      formEl.reset();
+      btnEl.disabled = false;
+      btnEl.textContent = 'Send Enquiry →';
+      if (onDone) onDone();
+    }).catch(err=>{
+      notifyEl.classList.add('show','error');
+      notifyEl.textContent = '⚠️ Something went wrong. Please call us directly at +91 70303 03492 or WhatsApp us.';
+      btnEl.disabled = false;
+      btnEl.textContent = 'Send Enquiry →';
+    });
+  });
+}
 
-                        <!-- Address field made optional -->
-                        <div class="form-group">
-                            <label for="address">Address (Optional)</label>
-                            <textarea id="address" name="address" class="form-control" placeholder="Enter your current city and address details"></textarea>
-                        </div>
+handleFormSubmit(
+  document.getElementById('contactFormEl'),
+  document.getElementById('formNotify'),
+  document.getElementById('contactSubmitBtn'),
+  '✅ Your enquiry has been sent! Our team will contact you within 24 hours.'
+);
 
-                        <button type="submit" class="btn-submit">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </section>
-    </main>
+handleFormSubmit(
+  document.getElementById('modalFormEl'),
+  document.getElementById('modalNotify'),
+  document.getElementById('modalSubmitBtn'),
+  '✅ Enquiry sent! Our team will contact you within 24 hours.',
+  function(){ setTimeout(closeModal, 2500); }
+);
 
-    <!-- JS SCRIPTS -->
-    <script>
-        lucide.createIcons();
+/* ── Project filter ── */
+function filterProj(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.big-proj-card').forEach(card=>{
+    card.style.display=(cat==='all'||(card.dataset.cat||'').includes(cat))?'':'none';
+  });
+}
 
-        // 1. Mobile Menu Toggle Logic
-        const mobileMenu = document.getElementById('mobile-menu');
-        const navLinks = document.getElementById('nav-links');
-        const navItems = document.querySelectorAll('.nav-links a');
+/* ── Juhu Bungalow image gallery toggle ── */
+const bungalowImages = ['Shroff1.jpeg', 'Shroff2.jpeg'];
+function setBungalowImg(idx, evt){
+  if (evt) evt.stopPropagation();
+  const imgEl = document.getElementById('bungalowImg');
+  imgEl.style.backgroundImage = `url('${bungalowImages[idx]}')`;
+  document.querySelectorAll('#bungalowImg .bpc-dot').forEach((d,i)=>d.classList.toggle('active', i===idx));
+}
 
-        mobileMenu.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-
-        // Close mobile menu when a link is clicked
-        navItems.forEach(item => {
-            item.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        // 2. Sticky Header Logic
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // 3. Scroll Reveal Animation
-        const revealElements = document.querySelectorAll('.reveal');
-        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-
-        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('active');
-                
-                // Trigger counters
-                if (entry.target.classList.contains('stat-item')) {
-                    const counter = entry.target.querySelector('.counter');
-                    if (counter && !counter.classList.contains('counted')) {
-                        updateCounter(counter);
-                        counter.classList.add('counted');
-                    }
-                }
-                observer.unobserve(entry.target);
-            });
-        }, revealOptions);
-
-        revealElements.forEach(el => revealOnScroll.observe(el));
-
-        // 4. Stat Counters
-        function updateCounter(counter) {
-            const target = +counter.getAttribute('data-target');
-            const increment = target / 120; 
-            let current = 0;
-
-            const animate = () => {
-                current += increment;
-                if (current < target) {
-                    counter.innerText = Math.ceil(current);
-                    requestAnimationFrame(animate);
-                } else {
-                    counter.innerText = target;
-                }
-            };
-            animate();
-        }
-    </script>
+/* ── Init ── */
+setTimeout(checkReveal,300);
+</script>
 </body>
 </html>
