@@ -90,7 +90,8 @@ nav.nav-light{background:rgba(13,27,42,0.97);box-shadow:0 2px 16px rgba(0,0,0,0.
 .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;max-width:1200px;margin:0 auto}
 .proj-card{position:relative;overflow:hidden;background:var(--navy);cursor:pointer}
 .proj-card:first-child{grid-column:span 2}
-.proj-img{height:420px;background-size:cover;background-position:center;transition:transform 0.6s ease}
+.proj-img{height:420px;background-size:cover;background-position:center;transition:transform 0.6s ease;position:relative}
+.proj-img.bpc-gallery{overflow:hidden}
 .proj-card:first-child .proj-img{height:520px}
 .proj-card:hover .proj-img{transform:scale(1.05)}
 .proj-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,27,42,0.95) 0%,rgba(13,27,42,0.2) 60%,transparent 100%)}
@@ -221,10 +222,12 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
 .bpc-rera{font-size:10px;color:var(--grey);margin-bottom:14px}
 .bpc-enquire{width:100%;background:var(--navy);color:var(--white);border:none;padding:13px;font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;font-family:var(--ff-body)}
 .bpc-enquire:hover{background:var(--gold);color:var(--navy)}
-.bpc-gallery{transition:background-image 0.3s ease}
+.bpc-gallery{position:relative;background:var(--navy)}
+.bpc-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease-in-out}
+.bpc-slide.active{opacity:1}
 .bpc-gallery-dots{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2}
-.bpc-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);cursor:pointer;border:1.5px solid rgba(255,255,255,0.7);transition:all 0.2s}
-.bpc-dot.active,.bpc-dot:hover{background:var(--gold);border-color:var(--gold)}
+.bpc-dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.4);border:1.5px solid rgba(255,255,255,0.6);transition:all 0.3s}
+.bpc-dot.active{background:var(--gold);border-color:var(--gold);transform:scale(1.2)}
 
 /* ── CONTACT PAGE ── */
 .contact-hero{padding:160px 5% 72px;background:var(--cream);text-align:center}
@@ -381,32 +384,17 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
 
   <section class="section" style="padding-bottom:0;background:var(--cream)">
     <div class="projects-header reveal">
-      <div><p class="section-label">Portfolio</p><h2 class="section-title">Signature Projects</h2></div>
-      <button style="background:transparent;border:1.5px solid var(--navy);color:var(--navy);padding:12px 24px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:var(--ff-body)" onclick="showPage('projects')">View All Projects</button>
+      <div><p class="section-label">Portfolio</p><h2 class="section-title">Our Flagship Project</h2></div>
+      <button style="background:transparent;border:1.5px solid var(--navy);color:var(--navy);padding:12px 24px;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;font-family:var(--ff-body)" onclick="showPage('projects')">View Project Details</button>
     </div>
-    <div class="projects-grid">
+    <div class="projects-grid" style="grid-template-columns:1fr">
       <div class="proj-card reveal">
-        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1400&q=80')"></div>
+        <div class="proj-img bpc-gallery" id="bungalowImgHome" style="height:560px">
+          <div class="bpc-slide active" style="background-image:url('Shroff1.jpeg')"></div>
+          <div class="bpc-slide" style="background-image:url('Shroff2.jpeg')"></div>
+        </div>
         <div class="proj-overlay"></div>
-        <div class="proj-info"><span class="proj-badge badge-move">Ready to Move</span><div class="proj-name">Patil Grandeur</div><div class="proj-loc">📍 Kothrud, Pune</div><div class="proj-details"><span class="proj-tag">2 & 3 BHK</span><span class="proj-tag">From ₹85L</span></div></div>
-        <button class="proj-hover-cta" onclick="openEnquiry('Patil Grandeur')">Enquire Now</button>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"></div>
-        <div class="proj-overlay"></div>
-        <div class="proj-info"><span class="proj-badge badge-ongoing">Under Construction</span><div class="proj-name">Patil Heights</div><div class="proj-loc">📍 Nashik</div><div class="proj-details"><span class="proj-tag">1, 2 & 3 BHK</span></div></div>
-        <button class="proj-hover-cta" onclick="openEnquiry('Patil Heights')">Enquire Now</button>
-      </div>
-      <div class="proj-card reveal">
-        <div class="proj-img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')"></div>
-        <div class="proj-overlay"></div>
-        <div class="proj-info"><span class="proj-badge badge-upcoming">Pre-Launch</span><div class="proj-name">Patil Serenity Villas</div><div class="proj-loc">📍 Kolhapur</div><div class="proj-details"><span class="proj-tag">3 & 4 BHK Villas</span></div></div>
-        <button class="proj-hover-cta" onclick="openEnquiry('Patil Serenity Villas')">Register Interest</button>
-      </div>
-      <div class="proj-card reveal" style="grid-column:span 2">
-        <div class="proj-img" style="height:280px;background-image:url('Shroff1.jpeg')"></div>
-        <div class="proj-overlay"></div>
-        <div class="proj-info"><span class="proj-badge badge-upcoming">Upcoming</span><div class="proj-name">Juhu Bungalow</div><div class="proj-loc">📍 Juhu, Vile Parle West, Mumbai</div><div class="proj-details"><span class="proj-tag">Luxury Bungalow</span><span class="proj-tag">Next to JW Marriott</span></div></div>
+        <div class="proj-info"><span class="proj-badge badge-upcoming">Upcoming</span><div class="proj-name">Juhu Bungalow</div><div class="proj-loc">📍 Next to JW Marriott, Juhu, Vile Parle West, Mumbai</div><div class="proj-details"><span class="proj-tag">Luxury Bungalow</span><span class="proj-tag">CTS No. 905/A</span><span class="proj-tag">Darius Shroff Home</span></div></div>
         <button class="proj-hover-cta" onclick="openEnquiry('Juhu Bungalow')">Enquire Now</button>
       </div>
     </div>
@@ -420,17 +408,6 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
         <div class="why-card reveal"><span class="why-icon">📍</span><div class="why-title">Prime Locations</div><div class="why-desc">Strategically selected sites near highways, metro corridors, top schools, and business hubs.</div></div>
         <div class="why-card reveal"><span class="why-icon">💼</span><div class="why-title">Transparent Dealings</div><div class="why-desc">No hidden costs, complete legal clarity, and dedicated relationship managers from booking to possession.</div></div>
         <div class="why-card reveal"><span class="why-icon">🤝</span><div class="why-title">After-Sales Support</div><div class="why-desc">Dedicated CRM team and a 5-year structural warranty — our relationship doesn't end at possession.</div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="testi-section">
-    <div style="max-width:1200px;margin:0 auto">
-      <div class="reveal" style="text-align:center"><p class="section-label" style="color:var(--gold)">What Our Residents Say</p><h2 class="section-title section-title-white">5,000+ Families Trust Us</h2></div>
-      <div class="testi-cards">
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"We moved into Patil Grandeur in 2023 and the quality is simply exceptional. Every detail was attended to with care. Our family couldn't be happier."</p><div class="testi-author"><div class="testi-avatar">RK</div><div><div class="testi-name">Rajesh Kulkarni</div><div class="testi-proj">Patil Grandeur, Pune</div></div></div></div>
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"As an NRI investing from Dubai, I was worried about managing the process remotely. The Patil Realty team made it seamless — transparent, professional, and timely."</p><div class="testi-author"><div class="testi-avatar">SP</div><div><div class="testi-name">Suresh Patkar</div><div class="testi-proj">Patil Heights, Nashik</div></div></div></div>
-        <div class="testi-card reveal"><div class="stars">★★★★★</div><p class="testi-quote">"The location of Serenity Villas is breathtaking. Premium amenities, spacious layouts, and a community that feels like home from day one."</p><div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Anita Misal</div><div class="testi-proj">Patil Serenity, Kolhapur</div></div></div></div>
       </div>
     </div>
   </section>
@@ -455,7 +432,7 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
         <div class="rera-badge">RERA Reg. No: P52100012345</div>
       </div>
       <div><div class="footer-heading">Quick Links</div><ul class="footer-links"><li><a onclick="showPage('home')">Home</a></li><li><a onclick="showPage('about')">About Us</a></li><li><a onclick="showPage('projects')">Upcoming Projects</a></li><li><a onclick="showPage('contact')">Contact Us</a></li></ul></div>
-      <div><div class="footer-heading">Projects</div><ul class="footer-links"><li><a onclick="openEnquiry('Patil Grandeur')">Patil Grandeur</a></li><li><a onclick="openEnquiry('Patil Heights')">Patil Heights</a></li><li><a onclick="openEnquiry('Patil Serenity')">Patil Serenity</a></li><li><a onclick="openEnquiry('Patil Skyline')">Patil Skyline</a></li><li><a onclick="openEnquiry('Juhu Bungalow')">Juhu Bungalow</a></li></ul></div>
+      <div><div class="footer-heading">Projects</div><ul class="footer-links"><li><a onclick="openEnquiry('Juhu Bungalow')">Juhu Bungalow</a></li><li><a onclick="showPage('projects')">View Details</a></li></ul></div>
       <div><div class="footer-heading">Contact</div><div class="footer-ci">📍 Office No 303, Relcon House Premises Society Ltd., MG Road, Vile Parle East, Mumbai 400057</div><div class="footer-ci">📞 +91 70303 03492</div><div class="footer-ci">✉️ sachinpatil021976@gmail.com</div><div class="footer-ci">🕐 Mon–Sat, 10am–7pm</div></div>
     </div>
     <div class="footer-bottom"><span>© 2025 The Patil Realty. All Rights Reserved.</span><span>Owner: Sachin Patil</span></div>
@@ -509,7 +486,7 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
           <div class="tl-item"><div class="tl-year">2005</div><div class="tl-event">Delivered first 500 homes. Expanded to Nashik and Aurangabad.</div></div>
           <div class="tl-item"><div class="tl-year">2012</div><div class="tl-event">Awarded 'Best Emerging Developer' by Times Realty. Crossed ₹500 Cr in deliveries.</div></div>
           <div class="tl-item"><div class="tl-year">2018</div><div class="tl-event">Launched luxury segment with Serenity Villas, Kolhapur. ISO 9001 certified.</div></div>
-          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-event">5,000+ families. 8 cities. ₹1,500 Cr+ delivered. Patil Skyline, Mumbai underway.</div></div>
+          <div class="tl-item"><div class="tl-year">2024</div><div class="tl-event">5,000+ families. 8 cities. ₹1,500 Cr+ delivered. Juhu Bungalow project announced in Mumbai.</div></div>
         </div>
       </div>
       <div class="story-img reveal"><img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="The Patil Realty Legacy"></div>
@@ -550,47 +527,22 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
   <section class="dark-hero">
     <div class="dark-hero-img" style="background-image:url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1800&q=80')"></div>
     <div class="dark-hero-content">
-      <p class="section-label">Portfolio 2024–25</p>
+      <p class="section-label">Our Project</p>
       <h1 style="font-family:var(--ff-display);font-size:clamp(32px,5vw,58px);font-weight:700;color:var(--white);line-height:1.1">The Future<br><em style="color:var(--gold)">Starts Here</em></h1>
-      <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-top:14px;font-weight:300">Register now for exclusive pre-launch pricing. RERA-certified projects.</p>
+      <p style="font-size:15px;color:rgba(255,255,255,0.6);margin-top:14px;font-weight:300">Register now for exclusive pre-launch information on our upcoming Juhu Bungalow project.</p>
     </div>
   </section>
-  <div class="filter-bar">
-    <div class="filter-inner">
-      <button class="filter-btn active" onclick="filterProj('all',this)">All Projects</button>
-      <button class="filter-btn" onclick="filterProj('residential',this)">Residential</button>
-      <button class="filter-btn" onclick="filterProj('commercial',this)">Commercial</button>
-      <button class="filter-btn" onclick="filterProj('ready',this)">Ready to Move</button>
-      <button class="filter-btn" onclick="filterProj('construction',this)">Under Construction</button>
-      <button class="filter-btn" onclick="filterProj('upcoming',this)">Upcoming</button>
-      <button class="filter-btn" onclick="filterProj('bungalow',this)">Bungalows</button>
-    </div>
-  </div>
-  <div class="all-projects">
-    <div class="all-proj-grid" id="projGrid">
-      <div class="big-proj-card reveal" data-cat="residential ready">
-        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80')"><span class="bpc-badge" style="background:rgba(45,122,79,0.92);color:#fff">✅ Ready to Move</span></div>
-        <div class="bpc-body"><div class="bpc-name">Patil Grandeur</div><div class="bpc-loc">📍 Kothrud, Pune</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>2 & 3 BHK</span></div><div class="bpc-meta-item"><label>Possession</label><span>Dec 2024</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹85 Lakh</span></div><div class="bpc-meta-item"><label>Total Units</label><span>180 Apts</span></div></div><div class="bpc-rera">RERA: P52100029876</div><button class="bpc-enquire" onclick="openEnquiry('Patil Grandeur')">Enquire Now →</button></div>
-      </div>
-      <div class="big-proj-card reveal" data-cat="residential construction">
-        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"><span class="bpc-badge" style="background:rgba(59,130,246,0.92);color:#fff">🔨 Under Construction</span></div>
-        <div class="bpc-body"><div class="bpc-name">Patil Heights</div><div class="bpc-loc">📍 Gangapur Road, Nashik</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>1, 2 & 3 BHK</span></div><div class="bpc-meta-item"><label>Possession</label><span>Jun 2026</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹45 Lakh</span></div><div class="bpc-meta-item"><label>Total Units</label><span>240 Apts</span></div></div><div class="bpc-rera">RERA: P52100031245</div><button class="bpc-enquire" onclick="openEnquiry('Patil Heights')">Enquire Now →</button></div>
-      </div>
-      <div class="big-proj-card reveal" data-cat="residential upcoming">
-        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80')"><span class="bpc-badge" style="background:rgba(201,151,58,0.92);color:#0D1B2A">🔜 Pre-Launch</span></div>
-        <div class="bpc-body"><div class="bpc-name">Patil Serenity Villas</div><div class="bpc-loc">📍 Tarabai Park, Kolhapur</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Configuration</label><span>3 & 4 BHK Villas</span></div><div class="bpc-meta-item"><label>Possession</label><span>Dec 2026</span></div><div class="bpc-meta-item"><label>Price From</label><span>₹1.8 Cr</span></div><div class="bpc-meta-item"><label>Total Units</label><span>64 Villas</span></div></div><div class="bpc-rera">RERA: Registration In Progress</div><button class="bpc-enquire" onclick="openEnquiry('Patil Serenity Villas')">Register Interest →</button></div>
-      </div>
-      <div class="big-proj-card reveal" data-cat="commercial construction">
-        <div class="bpc-img" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80')"><span class="bpc-badge" style="background:rgba(59,130,246,0.92);color:#fff">🔨 Under Construction</span></div>
-        <div class="bpc-body"><div class="bpc-name">Patil Skyline</div><div class="bpc-loc">📍 BKC, Mumbai</div><div class="bpc-meta"><div class="bpc-meta-item"><label>Type</label><span>Grade A Offices</span></div><div class="bpc-meta-item"><label>Possession</label><span>Mar 2027</span></div><div class="bpc-meta-item"><label>Area From</label><span>500 sq.ft.</span></div><div class="bpc-meta-item"><label>Total Area</label><span>2.5L sq.ft.</span></div></div><div class="bpc-rera">RERA: P51900044123</div><button class="bpc-enquire" onclick="openEnquiry('Patil Skyline')">Enquire Now →</button></div>
-      </div>
 
+  <div class="all-projects">
+    <div class="all-proj-grid" id="projGrid" style="grid-template-columns:1fr;max-width:760px;margin:0 auto">
       <div class="big-proj-card reveal" data-cat="residential bungalow upcoming">
-        <div class="bpc-img bpc-gallery" id="bungalowImg" style="background-image:url('Shroff1.jpeg')">
-          <span class="bpc-badge" style="background:rgba(201,151,58,0.92);color:#0D1B2A">🔜 Upcoming</span>
+        <div class="bpc-img bpc-gallery" id="bungalowImg" style="height:380px">
+          <div class="bpc-slide active" style="background-image:url('Shroff1.jpeg')"></div>
+          <div class="bpc-slide" style="background-image:url('Shroff2.jpeg')"></div>
+          <span class="bpc-badge" style="background:rgba(201,151,58,0.92);color:#0D1B2A;z-index:3">🔜 Upcoming</span>
           <div class="bpc-gallery-dots">
-            <span class="bpc-dot active" onclick="setBungalowImg(0,event)"></span>
-            <span class="bpc-dot" onclick="setBungalowImg(1,event)"></span>
+            <span class="bpc-dot active"></span>
+            <span class="bpc-dot"></span>
           </div>
         </div>
         <div class="bpc-body">
@@ -677,10 +629,6 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
             <div class="form-group"><label>Project of Interest</label>
               <select name="Project of Interest">
                 <option value="">Select a project</option>
-                <option>Patil Grandeur – Pune</option>
-                <option>Patil Heights – Nashik</option>
-                <option>Patil Serenity Villas – Kolhapur</option>
-                <option>Patil Skyline – Mumbai</option>
                 <option>Juhu Bungalow – Vile Parle West</option>
                 <option>General Inquiry</option>
               </select>
@@ -712,7 +660,7 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <h3>Register Your Interest</h3>
-    <div class="modal-proj-name" id="modalProjName">Patil Grandeur</div>
+    <div class="modal-proj-name" id="modalProjName">Juhu Bungalow</div>
 
     <div class="notify" id="modalNotify"></div>
 
@@ -729,9 +677,9 @@ footer{background:var(--navy);color:var(--white);padding:80px 5% 40px}
       </div>
       <div class="form-row">
         <div class="form-group"><label>City</label><input type="text" name="City" placeholder="Your city"></div>
-        <div class="form-group"><label>Configuration</label>
+        <div class="form-group"><label>Interest</label>
           <select name="Configuration">
-            <option>1 BHK</option><option selected>2 BHK</option><option>3 BHK</option><option>4 BHK / Villa</option>
+            <option selected>General Enquiry</option><option>Site Visit Request</option><option>Pricing Details</option><option>Floor Plan Request</option>
           </select>
         </div>
       </div>
@@ -874,23 +822,22 @@ handleFormSubmit(
   function(){ setTimeout(closeModal, 2500); }
 );
 
-/* ── Project filter ── */
-function filterProj(cat,btn){
-  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.big-proj-card').forEach(card=>{
-    card.style.display=(cat==='all'||(card.dataset.cat||'').includes(cat))?'':'none';
-  });
+/* ── Juhu Bungalow auto-flipping image slideshow (every 3s) ── */
+function initBungalowSlideshow(elementId){
+  const gallery = document.getElementById(elementId);
+  if (!gallery) return;
+  const slides = gallery.querySelectorAll('.bpc-slide');
+  const dots = gallery.querySelectorAll('.bpc-dot');
+  if (slides.length < 2) return;
+  let current = 0;
+  setInterval(() => {
+    current = (current + 1) % slides.length;
+    slides.forEach((s,i)=>s.classList.toggle('active', i===current));
+    dots.forEach((d,i)=>d.classList.toggle('active', i===current));
+  }, 3000);
 }
-
-/* ── Juhu Bungalow image gallery toggle ── */
-const bungalowImages = ['Shroff1.jpeg', 'Shroff2.jpeg'];
-function setBungalowImg(idx, evt){
-  if (evt) evt.stopPropagation();
-  const imgEl = document.getElementById('bungalowImg');
-  imgEl.style.backgroundImage = `url('${bungalowImages[idx]}')`;
-  document.querySelectorAll('#bungalowImg .bpc-dot').forEach((d,i)=>d.classList.toggle('active', i===idx));
-}
+initBungalowSlideshow('bungalowImgHome');
+initBungalowSlideshow('bungalowImg');
 
 /* ── Init ── */
 setTimeout(checkReveal,300);
